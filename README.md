@@ -36,3 +36,27 @@ In this example, we load OLX Jobs Interactions Dataset from Kaggle. The dataset 
 * RP3 batch recommendation model
 * RP3 real-time recommendation model
 ## Job Recommendation System
+![1-graph](https://github.com/Madhumitha1006/job-recommendation-system/assets/139626463/e081bc94-877e-4d0a-94e0-ad4fe5fbb9bc)
+
+Let us denote the set of users by U and the set of items
+by I. We represent our data as a bipartite graph in which the
+parts are users and items, while edges represent interactions
+between them. Let N (x) be the set of neighbours of the node
+x.
+The model calculates a score rui representing the relevance
+of item i ∈ I for user u ∈ U, as the sum of the scores assigned to the paths of length 3 connecting u and i.
+
+![1-realtime](https://github.com/Madhumitha1006/job-recommendation-system/assets/139626463/1b3e2d99-f5b6-45c0-9ca7-2cb5d0e01c64)
+
+The interaction store – depending on implementation – can
+reflect the most recent user behaviour in almost real time,
+while the item-to-item recommendation store is updated only
+after completion of the batch prediction step.
+When requesting personalized recommendations for a user,
+the aggregator component retrieves up to M most recent
+interactions Iu = {ik : k ≤ M} from the interaction store.
+Then for each of the unique returned items a list of similar
+items S(Iu) is fetched
+from the item-to-item recommendation store. The RP3Beta model recommends the items with the
+highest score excluding the items with which the user has
+interacted.
